@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="hello">测试</a>
-	<a href="test">测试SpringMVC</a>
+	<h1>成功</h1>
 </body>
 </html>
