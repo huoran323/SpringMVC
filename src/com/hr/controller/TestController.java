@@ -1,11 +1,12 @@
 package com.hr.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/mvc")
+//@RequestMapping("/mvc")
 public class TestController {
 
 	/**
@@ -46,6 +47,17 @@ public class TestController {
 	@RequestMapping(value="/*/t??/**/testAnt") //eg: /abc/tHH/d/e/testAnt
 	public String testAnt(){
 		System.out.println("SUCCESS:testAnt");
+		return "success";
+	}
+	
+	/**
+	 * 以前：localhost:8080/springMVC/testREST?id=1001&username=admin
+	 * 现在：localhost:8080/springMVC/testREST/1001/admin
+	 * @return
+	 */
+	@RequestMapping("/testREST/{id}/{username}")
+	public String testREST(@PathVariable("id")Integer id, @PathVariable("username")String username){
+		System.out.println("id: "+id+" username: "+username);
 		return "success";
 	}
 }
