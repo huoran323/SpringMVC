@@ -1,11 +1,15 @@
 package com.hr.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hr.bean.User;
 
@@ -54,12 +58,24 @@ public class ParamController {
 	
 	/**
 	 * 可以使用POJO获取客户端数据，要求实体类对象中的属性名一定要和页面中表单元素的name属性值一致，且支持级联关系
+	 * 可以通过设置形参的方式，获取servlet api
 	 * @param user
 	 * @return
 	 */
+//	@RequestMapping(value="/param", method=RequestMethod.POST)
+//	public String param(User user, HttpServletRequest request, HttpServletResponse response){
+//		String username = request.getParameter("username");
+//		System.out.println("User="+user);
+//		return "success";
+//	}
+	
 	@RequestMapping(value="/param", method=RequestMethod.POST)
-	public String param(User user){
-		System.out.println("User="+user);
-		return "success";
+	public ModelAndView param(){
+		ModelAndView mav = new ModelAndView();
+//		在request作用域中设置值，即request.setAttribute("username","root");
+		mav.addObject("username", "root");
+//		设置视图名称,实现页面跳转，即上面方法返回的success页面
+		mav.setViewName("success");
+		return mav;
 	}
 }
