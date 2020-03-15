@@ -1,6 +1,8 @@
 package com.hr.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +22,31 @@ public class ParamController {
 	 * @param age
 	 * @return
 	 */
+//	@RequestMapping(value="/param", method=RequestMethod.POST)
+//	public String param(@RequestParam(value="name", required=false, defaultValue="admin")String username, String password, String age){
+//		System.out.println("username="+username+",password="+password+",age="+age);
+//		return "success";
+//	}
+	
+	/**
+	 * @RequestHeader: 在处理请求的方法上，获取请求头信息，用法和@RequestParam一致
+	 * @param AcceptLangunage
+	 * @return
+	 */
+//	@RequestMapping(value="/param", method=RequestMethod.POST)
+//	public String param(@RequestHeader(value="Accept-Language")String AcceptLangunage){
+//		System.out.println("Accept-Language="+AcceptLangunage);
+//		return "success";
+//	}
+	
+	/**
+	 * @CookieValue: 在处理请求的方法上，获取Cookie信息，用法和@RequestParam一致
+	 * @param JSESSIONID
+	 * @return
+	 */
 	@RequestMapping(value="/param", method=RequestMethod.POST)
-	public String param(@RequestParam(value="name", required=false, defaultValue="admin")String username, String password, String age){
-		System.out.println("username="+username+",password="+password+",age="+age);
+	public String param(@CookieValue(value="JSESSIONID")String JSESSIONID){
+		System.out.println("JSESSIONID="+JSESSIONID);
 		return "success";
 	}
 }
