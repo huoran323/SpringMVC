@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hr.bean.User;
+
 @Controller
 public class ParamController {
 
@@ -23,7 +25,7 @@ public class ParamController {
 	 * @return
 	 */
 //	@RequestMapping(value="/param", method=RequestMethod.POST)
-//	public String param(@RequestParam(value="name", required=false, defaultValue="admin")String username, String password, String age){
+//	public String param(@RequestParam(value="username", required=false, defaultValue="admin")String username, String password, String age){
 //		System.out.println("username="+username+",password="+password+",age="+age);
 //		return "success";
 //	}
@@ -44,9 +46,20 @@ public class ParamController {
 	 * @param JSESSIONID
 	 * @return
 	 */
+//	@RequestMapping(value="/param", method=RequestMethod.POST)
+//	public String param(@CookieValue(value="JSESSIONID")String JSESSIONID){
+//		System.out.println("JSESSIONID="+JSESSIONID);
+//		return "success";
+//	}
+	
+	/**
+	 * 可以使用POJO获取客户端数据，要求实体类对象中的属性名一定要和页面中表单元素的name属性值一致，且支持级联关系
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value="/param", method=RequestMethod.POST)
-	public String param(@CookieValue(value="JSESSIONID")String JSESSIONID){
-		System.out.println("JSESSIONID="+JSESSIONID);
+	public String param(User user){
+		System.out.println("User="+user);
 		return "success";
 	}
 }

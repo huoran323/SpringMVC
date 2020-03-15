@@ -9,12 +9,13 @@
 <body>
 
 	<form action="param" method="post">
-		username: <input type="text" name="name" /><br/>
+		username: <input type="text" name="username" /><br/>
 		password: <input type="text" name="password" /><br/>
 		age: <input type="text" name="age" /><br/>
-		province: <input type="text" name="province" /><br/>
-		city: <input type="text" name="city" /><br/>
-		country: <input type="text" name="country" /><br/>
+		<!-- address.province对应user bean中的属性名 -->
+		province: <input type="text" name="address.province" /><br/>
+		city: <input type="text" name="address.city" /><br/>
+		country: <input type="text" name="address.country" /><br/>
 		<input type="submit" value="添加"/>
 	</form>
 </body>
