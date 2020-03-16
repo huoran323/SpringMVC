@@ -1,9 +1,12 @@
 package com.hr.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,13 +72,35 @@ public class ParamController {
 //		return "success";
 //	}
 	
+//	@RequestMapping(value="/param", method=RequestMethod.POST)
+//	public ModelAndView param(){
+//		ModelAndView mav = new ModelAndView();
+////		在request作用域中设置值，即request.setAttribute("username","root");
+//		mav.addObject("username", "root");
+////		设置视图名称,实现页面跳转，即上面方法返回的success页面
+//		mav.setViewName("success");
+//		return mav;
+//	}
+	
+	/**
+	 * 向作用域中放值的第二种方式
+	 * @param map
+	 * @return
+	 */
+//	@RequestMapping(value="/param", method=RequestMethod.POST)
+//	public String param(Map<String, Object> map){
+//		map.put("username", "admin");//向request作用域中放值
+//		return "success";//返回视图名称
+//	}
+	
+	/**
+	 * 向作用域中放值的第三种方式
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping(value="/param", method=RequestMethod.POST)
-	public ModelAndView param(){
-		ModelAndView mav = new ModelAndView();
-//		在request作用域中设置值，即request.setAttribute("username","root");
-		mav.addObject("username", "root");
-//		设置视图名称,实现页面跳转，即上面方法返回的success页面
-		mav.setViewName("success");
-		return mav;
+	public String param(Model model){
+		model.addAttribute("username", "admin");//向request作用域中放值
+		return "success";//返回视图名称
 	}
 }
