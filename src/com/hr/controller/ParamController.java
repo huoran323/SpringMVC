@@ -112,9 +112,12 @@ public class ParamController {
 	 * 	RedirectView: 重定向视图
 	 * @return
 	 */
-	@RequestMapping("/test1")
-	public String test(){
+	@RequestMapping(value="/test1", method=RequestMethod.POST)
+	public String test(String username){
 		//重定向视图，打开index.jsp页面
-		return "redirect:/index.jsp";
+//		return "redirect:/index.jsp";
+		
+		System.out.println(username);
+		return "success";
 	}
 }

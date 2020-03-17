@@ -9,5 +9,10 @@
 <body>
 	<a href="hello">测试</a>
 	<a href="test">测试SpringMVC</a>
+	
+	<form action="test1" method="post">
+		<input type="text" name="username" />
+		<input type="submit" name="提交" />
+	</form>
 </body>
 </html>
