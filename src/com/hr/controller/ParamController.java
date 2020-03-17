@@ -68,7 +68,7 @@ public class ParamController {
 //	@RequestMapping(value="/param", method=RequestMethod.POST)
 //	public String param(User user, HttpServletRequest request, HttpServletResponse response){
 //		String username = request.getParameter("username");
-//		System.out.println("User="+user);
+//		System.out.println("User="+us er);
 //		return "success";
 //	}
 	
@@ -102,5 +102,19 @@ public class ParamController {
 	public String param(Model model){
 		model.addAttribute("username", "admin");//向request作用域中放值
 		return "success";//返回视图名称
+	}
+	
+	/**
+	 * View作用：处理模型数据，实现页面跳转(转发，重定向)
+	 * View类型：
+	 * 	InternalResourceView: 转发视图
+	 * 	JstlView: 转发视图
+	 * 	RedirectView: 重定向视图
+	 * @return
+	 */
+	@RequestMapping("/test1")
+	public String test(){
+		//重定向视图，打开index.jsp页面
+		return "redirect:/index.jsp";
 	}
 }
