@@ -12,7 +12,7 @@
 	
 	<form action="test1" method="post">
 		<input type="text" name="username" />
-		<input type="submit" name="提交" />
+		<input type="submit" value="提交" />
 	</form>
 </body>
 </html>
