@@ -2,8 +2,11 @@ package com.hr.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,7 +46,7 @@ public class TestUploadAndDownController {
 		
 		//设置响应状态
 		HttpStatus statusCode = HttpStatus.OK;
-		
+		 
 		ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(b, headers, statusCode);
 		
 		is.close();
@@ -54,11 +57,48 @@ public class TestUploadAndDownController {
 	 * 文件上传
 	 * @param desc
 	 * @param uploadFile
+	 * @param session
 	 * @return
+	 * @throws IOException
 	 */
 	@RequestMapping(value="/up", method=RequestMethod.POST)
-	public String up(String desc, MultipartFile uploadFile) {
+	public String up(String desc, MultipartFile uploadFile, HttpSession session) throws IOException {
+		//获取上传文件的名称
+		String filename = uploadFile.getOriginalFilename();
+		//filename.substring(filename.lastIndexOf(".")) 截取出来的是后缀名，如.jpg .txt;添加UUID防止文件重名
+		String finalFileName = UUID.randomUUID() + filename.substring(filename.lastIndexOf("."));
+		String path = session.getServletContext().getRealPath("photo") + File.separator + finalFileName;
 		
+		File file = new File(path);
+		uploadFile.transferTo(file);
+		return "success";
+	}
+	
+	/**
+	 * 文件上传
+	 * @param desc
+	 * @param uploadFile
+	 * @return
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/up_old", method=RequestMethod.POST)
+	public String up_old(String desc, MultipartFile uploadFile, HttpSession session) throws IOException {
+		//获取上传文件的名称
+		String filename = uploadFile.getOriginalFilename();
+		String path = session.getServletContext().getRealPath("photo") + File.separator + filename;
+		//获取输入流
+		InputStream is = uploadFile.getInputStream();
+		//获取输出流
+		File file = new File(path);
+		OutputStream os = new FileOutputStream(file);
+		
+		int i = 0;
+		byte[] b = new byte[1024];
+		while((i = is.read(b)) != -1) {
+			os.write(b,0,i);
+		}
+		os.close();
+		is.close();
 		return "success";
 	}
 }

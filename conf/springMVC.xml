@@ -32,9 +32,15 @@
 	<!-- mvc驱动 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 	
+	<!-- 
+		将java里上传文件的file类型解析成multipartResolver，id为固定值multipartResolver
+		注意：文件解析器的bean中id必须设置为multipartResolver
+	 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- <property name="defaultEncoding" value="UTF-8"></property>
-		<property name="maxUploadSize" value="88888888"></property> -->
+		<!-- 设置文件解析的编码，一定要和页面的pageEncoding保持一致 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 最大上传文件大小，不支持表达式 -->
+		<property name="maxUploadSize" value="88888888"></property>
 	</bean>
 
 </beans>
