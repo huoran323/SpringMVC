@@ -12,10 +12,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class TestUploadAndDownController {
 
+	/**
+	 * 文件下载
+	 * @param session
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping("/down")
 	public ResponseEntity<byte[]> down(HttpSession session) throws IOException{
 		
@@ -40,5 +48,17 @@ public class TestUploadAndDownController {
 		
 		is.close();
 		return entity;
+	}
+	
+	/**
+	 * 文件上传
+	 * @param desc
+	 * @param uploadFile
+	 * @return
+	 */
+	@RequestMapping(value="/up", method=RequestMethod.POST)
+	public String up(String desc, MultipartFile uploadFile) {
+		
+		return "success";
 	}
 }
