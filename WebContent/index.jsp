@@ -19,5 +19,9 @@
 	<form:form action="test1" method="post">
 		<form:input path="username"/>
 	</form:form>
+	
+	<br>
+	<br>
+	<br>
 </body>
 </html>
