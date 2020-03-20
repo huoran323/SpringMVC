@@ -42,5 +42,19 @@
 		<!-- 最大上传文件大小，不支持表达式 -->
 		<property name="maxUploadSize" value="88888888"></property>
 	</bean>
+	
+	<mvc:interceptors>
+		<!-- 默认拦截所有请求:以下两种方法 -->
+		<bean class="com.hr.interceptor.FirstInterceptor"></bean>
+		<!-- 要求拦截器上必须加上注解@Component -->
+		<!-- <ref bean="firstInterceptor"/> -->
+		
+		<!-- 设置自定义拦截方式 -->
+		<!-- <mvc:interceptor>
+			<bean></bean>
+			<mvc:mapping path=""/> 需要拦截的请求
+			<mvc:exclude-mapping path=""/> 
+		</mvc:interceptor> -->
+	</mvc:interceptors>
 
 </beans>
