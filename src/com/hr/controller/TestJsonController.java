@@ -20,4 +20,12 @@ public class TestJsonController {
 	public String testJson() {
 		return "success";
 	}
+	
+	//示例
+//	@RequestMapping("/testJson")
+//	@ResponseBody
+//	public Collection<User> testJson() {
+//		Collection<User> users = dao.getAll();
+//		return users;
+//	}
 }
