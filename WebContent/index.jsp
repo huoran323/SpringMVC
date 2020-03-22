@@ -16,12 +16,13 @@
 		<input type="submit" value="提交" />
 	</form> --%>
 	
-	<form:form action="test1" method="post">
+	<%-- <form:form action="test1" method="post">
 		<form:input path="username"/>
-	</form:form>
+	</form:form> --%>
 	
 	<br>
-	<br>
-	<br>
+	
+	<a href="testException">测试异常</a>
+	${exception }
 </body>
 </html>

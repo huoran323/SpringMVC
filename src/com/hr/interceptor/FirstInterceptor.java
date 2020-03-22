@@ -28,7 +28,8 @@ public class FirstInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("First: preHandle");
-		return false;
+		//返回true放行
+		return true;
 	}
 
 }
