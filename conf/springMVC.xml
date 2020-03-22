@@ -57,7 +57,7 @@
 		<!-- 默认拦截所有请求:以下两种方法 -->
 		<bean class="com.hr.interceptor.FirstInterceptor"></bean>
 		<!-- 要求拦截器上必须加上注解@Component -->
-		<!-- <ref bean="firstInterceptor"/> -->
+		<!-- <ref bean="firstInterceptor"/> --> 
 		
 		<!-- 设置自定义拦截方式 -->
 		<!-- <mvc:interceptor>
