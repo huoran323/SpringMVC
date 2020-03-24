@@ -24,5 +24,9 @@
 	
 	<a href="testException">测试异常</a>
 	${exception }
+	
+	<br>
+	
+	<a href="testListener">测试监听器</a>
 </body>
 </html>

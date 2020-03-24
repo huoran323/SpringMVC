@@ -1,5 +1,8 @@
 package com.hr.bean;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 
 	private Integer id;
@@ -11,6 +14,11 @@ public class User {
 	private Integer age;
 	
 	private Address address;
+
+	public User() {
+		System.out.println("User===>构造方法");
+		// TODO Auto-generated constructor stub
+	}
 
 	public Integer getId() {
 		return id;

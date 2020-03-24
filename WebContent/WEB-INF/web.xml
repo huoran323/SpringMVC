@@ -4,61 +4,40 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  
-  <!-- 编码过滤器一定要放到所有过滤器的最前面 -->
   <filter>
-  	<filter-name>CharacterEncodingFilter</filter-name>
-  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-  	<init-param>
-  		<!-- 为CharacterEncodingFilter中的encoding属性赋值 -->
-  		<param-name>encoding</param-name>
-  		<param-value>UTF-8</param-value>
-  	</init-param>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
-  	<filter-name>CharacterEncodingFilter</filter-name>
-  	<!-- /* 对所有的请求进行过滤 -->
-  	<url-pattern>/*</url-pattern>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-  <!-- 
-  	Spring自带了一个过滤器HiddenHttpMethodFilter，支持GET、POST、PUT、DELETE请求
-  	method必须是POST，然后设置隐藏域name值为_method value值（DELETE|PUT）
-   -->
   <filter>
-  	<filter-name>HiddenHttpMethodFilter</filter-name>
-  	<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
   </filter>
   <filter-mapping>
-  	<filter-name>HiddenHttpMethodFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-  <!-- The front controller of this Spring Web application, responsible for handling all application requests -->
-	<servlet>
-		<servlet-name>springMVC</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- 设置springMVC配置文件的位置以及名称 -->
-		<init-param>
-			<!-- 固定值 上下文配置路径 对应DispatcherServlet的属性名  -->
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springMVC.xml</param-value>
-		</init-param>
-		<!-- 
-			用来设置servlet的加载时间
-			默认在第一次访问时加载，若设置此标签，会将servlet的加载时间提前到项目启动时
-			此标签中可以写整数，但是写负整数和0和没有设置是一样的效果，只有设置为正整数时才会将servlet的加载时间提前到项目启动时
-			值越小优先级越高
-		 -->
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<!-- Map all requests to the DispatcherServlet for handling -->
-	<servlet-mapping>
-		<servlet-name>springMVC</servlet-name>
-		<!-- 此处的/ 代表核心控制器只处理请求，不会处理静态页面，自动过滤页面的访问即访问jsp页面 -->
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-
-  
+  <servlet>
+    <servlet-name>springMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springMVC.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springMVC</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>com.hr.listener.SpringListener</listener-class>
+  </listener>
 </web-app>

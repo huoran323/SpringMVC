@@ -1,9 +1,16 @@
 package com.hr.controller;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.hr.bean.Teacher;
+import com.hr.bean.User;
 
 @Controller
 //@RequestMapping("/mvc")
@@ -59,5 +66,16 @@ public class TestController {
 	public String testREST(@PathVariable("id")Integer id, @PathVariable("username")String username){
 		System.out.println("id: "+id+" username: "+username);
 		return "success";
+	}
+	
+	@RequestMapping("/testListener")
+	public void testListener(HttpSession session) {
+		//获取spring所管理的teacher对象
+		ServletContext servletContext = session.getServletContext();
+		ApplicationContext ac = (ApplicationContext)servletContext.getAttribute("ac");
+//		Teacher teacher = ac.getBean("teacher", Teacher.class);
+//		System.out.println(teacher);
+		User user = ac.getBean("user", User.class);
+		System.out.println(user);
 	}
 }
